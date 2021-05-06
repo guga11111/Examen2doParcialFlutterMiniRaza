@@ -14,7 +14,7 @@ class _OrdenamientoPageState extends State<OrdenamientoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Ordenar'),
       ),
       body: Center(
           child: Column(

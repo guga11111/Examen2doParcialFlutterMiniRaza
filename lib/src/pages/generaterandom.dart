@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'menu.dart';
@@ -8,19 +10,19 @@ class GeneratePage extends StatefulWidget {
 }
 
 class _GeneratePageState extends State<GeneratePage> {
-  String _nombre;
-  String _edad;
-  String _estado;
+  int _max;
+  int _min;
+  int _r1 = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Random'),
       ),
       body: Center(
           child: Column(
         children: <Widget>[
-          Text("N",
+          Text(_r1.toString(),
               style: DefaultTextStyle.of(context)
                   .style
                   .apply(fontSizeFactor: 2.0)),
@@ -42,10 +44,7 @@ class _GeneratePageState extends State<GeneratePage> {
           ),
           _finInput(),
           ElevatedButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MenuPage()));
-            },
+            onPressed: () => randomNumber(),
             child: Text('Random'),
             style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
@@ -69,7 +68,8 @@ class _GeneratePageState extends State<GeneratePage> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
       onChanged: (valor) {
         setState(() {
-          _nombre = valor;
+          _max = int.parse(valor);
+          print(_max);
         });
       },
     );
@@ -88,9 +88,21 @@ class _GeneratePageState extends State<GeneratePage> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
       onChanged: (valor) {
         setState(() {
-          _nombre = valor;
+          _min = int.parse(valor);
+          print(_min);
         });
       },
     );
+  }
+
+  randomNumber() {
+    print('entro');
+    final _random = new Random();
+    print(_min);
+    print(_max);
+    setState(() {
+      _r1 = _max + _random.nextInt(_min - _max);
+      print(_r1);
+    });
   }
 }
