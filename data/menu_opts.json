@@ -1,0 +1,25 @@
+{
+    "nombreApp": "examen",
+    "rutas": [
+        {
+            "ruta": "menu",
+            "icon": "accessibility",
+            "texto": "Avatar"
+        },
+        {
+            "ruta": "chicharronera",
+            "icon": "folder_open",
+            "texto": "Cards - Tarjetas"
+        },
+        {
+            "ruta": "generate",
+            "icon": "donut_large",
+            "texto": "AnimatedContainer"
+        },
+        {
+            "ruta": "ordenamiento",
+            "icon": "input",
+            "texto": "Inputs"
+        }
+    ]
+}
