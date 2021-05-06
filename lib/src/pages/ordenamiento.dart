@@ -9,8 +9,7 @@ class OrdenamientoPage extends StatefulWidget {
 
 class _OrdenamientoPageState extends State<OrdenamientoPage> {
   String _nombre;
-  String _edad;
-  String _estado;
+  String _r1 = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,10 +19,10 @@ class _OrdenamientoPageState extends State<OrdenamientoPage> {
       body: Center(
           child: Column(
         children: <Widget>[
-          Text("Nombre",
+          Text(_r1,
               style: DefaultTextStyle.of(context)
                   .style
-                  .apply(fontSizeFactor: 2.0)),
+                  .apply(fontSizeFactor: 1.0, color: Colors.blueAccent)),
           Divider(
             thickness: 0,
             indent: 1000,
@@ -41,10 +40,7 @@ class _OrdenamientoPageState extends State<OrdenamientoPage> {
             endIndent: 1000,
           ),
           ElevatedButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MenuPage()));
-            },
+            onPressed: () => cambiarOrden(),
             child: Text('Ordenar'),
             style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
@@ -72,5 +68,22 @@ class _OrdenamientoPageState extends State<OrdenamientoPage> {
         });
       },
     );
+  }
+
+  cambiarOrden() {
+    var nombre = _nombre;
+    var aux = List(nombre.length);
+    var palabra = "";
+    for (var i = 0; i < nombre.length; i++) {
+      aux[i] = nombre[i];
+    }
+    aux.sort();
+    for (var i = 0; i < nombre.length; i++) {
+      palabra = palabra + aux[i].toString();
+    }
+    print(palabra);
+    setState(() {
+      _r1 = palabra;
+    });
   }
 }
