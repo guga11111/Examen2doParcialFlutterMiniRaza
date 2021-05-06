@@ -9,9 +9,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _nombre;
-  String _edad;
-  String _estado;
+  String _nombre = '';
+  int _edad = 0;
+  String _estado = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +51,15 @@ class _HomePageState extends State<HomePage> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MenuPage()));
+              Navigator.pushNamed(
+                context,
+                'menu',
+                arguments: ScreenArguments(
+                  _edad,
+                  _estado,
+                  _nombre,
+                ),
+              );
             },
             child: Text('Iniciar'),
             style: ElevatedButton.styleFrom(
@@ -79,6 +86,7 @@ class _HomePageState extends State<HomePage> {
       onChanged: (valor) {
         setState(() {
           _nombre = valor;
+          print(_nombre);
         });
       },
     );
@@ -98,7 +106,8 @@ class _HomePageState extends State<HomePage> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
       onChanged: (valor) {
         setState(() {
-          _edad = valor;
+          _edad = int.parse(valor);
+          print(_edad);
         });
       },
     );
@@ -119,8 +128,17 @@ class _HomePageState extends State<HomePage> {
       onChanged: (valor) {
         setState(() {
           _estado = valor;
+          print(_estado);
         });
       },
     );
   }
+}
+
+class ScreenArguments {
+  final int edad;
+  final String estado;
+  final String nombre;
+
+  ScreenArguments(this.edad, this.estado, this.nombre);
 }
